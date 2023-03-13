@@ -13,3 +13,11 @@ index = my_list.index("b")+1
 print(index)
 my_list = my_list[index:]
 print(my_list)
+
+my_int = 2**31
+print(my_int)
+
+num = "-123"
+num = int(num)
+print(num)
+print(type(num))
