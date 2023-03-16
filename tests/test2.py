@@ -1,0 +1,11 @@
+my_string = "    42"
+# my_string = my_string.split()
+print(my_string)
+my_string = my_string.replace(" ", "")
+my_string = list(my_string)
+print(my_string)
+# print(type(my_string))
+# my_string = "".join(my_string)
+# my_string = int(my_string)
+# print(type(my_string))
+# print(my_string)
