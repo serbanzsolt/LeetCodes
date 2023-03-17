@@ -20,23 +20,40 @@ class Solution:
         starting_char = [" ","+","-"]
         result = []
         # Starting is " " or "-" or "+"
-        if s[0] in starting_char:
-            s = s.replace(" ", "")
-            s = list(s)
-            print(s)
-            if s[0] == "-":
-                result.append("-")
-                for i in range(1, len(s)):
-                    if s[i] in digits:
-                        result.append(s[i])
+        if len(s) == 0:
+            return 0
+        elif s[0] in starting_char:
+            if len(s) > 1:
+                if s[1] in digits or s[1] == " ":
+                    # s = s.replace(" ", "")
+                    s = list(s)
+                    # print(s)
+                    if len(s) > 1:
+                        if s[0] == "-":
+                            result.append("-")
+                            for i in range(1, len(s)):
+                                if s[i] in digits:
+                                    result.append(s[i])
+                                else:
+                                    break
+                        elif s[0] == "+":
+                            for i in range(1, len(s)):
+                                if s[i] in digits:
+                                    result.append(s[i])
+                                else:
+                                    break
+                        else:
+                            for i in range(0, len(s)):
+                                if s[i] in digits:
+                                    result.append(s[i])
+                                else:
+                                    break
                     else:
-                        break
+                        return 0
+                else:
+                    return 0
             else:
-                for i in range(0, len(s)):
-                    if s[i] in digits:
-                        result.append(s[i])
-                    else:
-                        break
+                return 0
         # Starting is digit 0-9
         elif s[0] in digits:
             for i in range(0, len(s)):
@@ -45,10 +62,14 @@ class Solution:
                 else:
                     break
         # Starting is Letter(String)
+        elif s[0] == ".":
+            return 0
         else:
             for i in range(0, len(s)):
                 # next is letter
-                if s[i] not in digits:
+                if s[i] == " ":
+                    return 0
+                elif s[i] not in digits:
                     pass
                 # next is digit
                 else:
@@ -66,11 +87,27 @@ class Solution:
                         pass
         result = "".join(result)
         result = int(result)
-        return result
+        if result > ((2 ** 31) -1):
+            return ((2 ** 31) -1)
+        elif result < (-2 ** 31 ):
+            return (-2 ** 31 )
+        else:
+            return result
 
 my_solution = Solution()
-print(f'number is:{my_solution.myAtoi("42")} type: {my_solution.myAtoi("42")}')
-print(f'number is:{my_solution.myAtoi("-42")} type: {my_solution.myAtoi("-42")}')
-print(f'number is:{my_solution.myAtoi("            42")} type: {my_solution.myAtoi("            42")}')
-print(f'number is:{my_solution.myAtoi("alma42")} type: {my_solution.myAtoi("alma42")}')
-print(f'number is:{my_solution.myAtoi("-42almma")} type: {my_solution.myAtoi("-42almma")}')
+# print(f'number is: {my_solution.myAtoi("42")} type: {type(my_solution.myAtoi("42"))}')
+# print(f'number is: {my_solution.myAtoi("-42")} type: {type(my_solution.myAtoi("-42"))}')
+# print(f'number is: {my_solution.myAtoi("            42")} type: {type(my_solution.myAtoi("            42"))}')
+# print(f'number is: {my_solution.myAtoi("alma42")} type: {type(my_solution.myAtoi("alma42"))}')
+# print(f'number is: {my_solution.myAtoi("-42almma")} type: {type(my_solution.myAtoi("-42almma"))}')
+# print(f'number is: {my_solution.myAtoi("words and 987")} type: {type(my_solution.myAtoi("words and 987"))}')
+# print(f'number is: {my_solution.myAtoi("-+4")} type: {type(my_solution.myAtoi("-+4"))}')
+# print(f'number is: {my_solution.myAtoi("00000-42a1234")} type: {type(my_solution.myAtoi("00000-42a1234"))}')
+# print(f'number is: {my_solution.myAtoi("-1123u3761867")} type: {type(my_solution.myAtoi("-1123u3761867"))}')
+# print(f'number is: {my_solution.myAtoi("-91283472332")} type: {type(my_solution.myAtoi("-1123u3761867"))}')
+# print(f'number is: {my_solution.myAtoi("-115579378e25")} type: {type(my_solution.myAtoi("-1123u3761867"))}')
+# print(f'number is: {my_solution.myAtoi(".1")} type: {type(my_solution.myAtoi(".1"))}')
+# print(f'number is: {my_solution.myAtoi("")} type: {type(my_solution.myAtoi(""))}')
+# print(f'number is: {my_solution.myAtoi("+1")} type: {type(my_solution.myAtoi("+1"))}')
+# print(f'number is: {my_solution.myAtoi("  ")} type: {type(my_solution.myAtoi("  "))}')
+print(f'number is: {my_solution.myAtoi("   +0 123")} type: {type(my_solution.myAtoi("   +0 123"))}')
